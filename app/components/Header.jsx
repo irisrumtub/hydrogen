@@ -1,5 +1,5 @@
 import {Await, NavLink} from '@remix-run/react';
-import {Suspense} from 'react';
+import {Suspense, useEffect, useState } from 'react';
 import {useRootLoaderData} from '~/root';
 
 /**
