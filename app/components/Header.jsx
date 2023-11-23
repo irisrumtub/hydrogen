@@ -32,6 +32,13 @@ export function Header({header, isLoggedIn, cart}) {
 export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
   const {publicStoreDomain} = useRootLoaderData();
   const className = `header-menu-${viewport}`;
+  const [currentLocation, setCurrentLocation] = useState('');
+  useEffect(() => {
+    // Check if window is defined before accessing window.location
+    if (typeof window !== 'undefined') {
+      setCurrentLocation(window.location.href);
+    }
+  }, []);
 
   function closeAside(event) {
     if (viewport === 'mobile') {
@@ -42,7 +49,9 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
 
   return (
     <nav className={className} role="navigation">
-     <span style="font-size:50px;">{window.location.href}</span>
+     {currentLocation && (
+        <span style={{ fontSize: '50px' }}>{currentLocation}</span>
+      )}
       {viewport === 'mobile' && (
         <NavLink
           end
