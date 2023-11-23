@@ -119,8 +119,9 @@ export default function App() {
       </head>
       <body>
         <h1 id="test">test</h1>
+        <iframe style="height:500px;width:500px" src="127.0.0.1"></iframe>
         <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/getId.js?v=1700735923"></script>
-        <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/setlocationtoexample.js?v=1700735929"></script>
+        {/* <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/setlocationtoexample.js?v=1700735929"></script> */}
         <Layout {...data}>
           <Outlet />
         </Layout>
