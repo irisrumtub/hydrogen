@@ -42,7 +42,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
 
   return (
     <nav className={className} role="navigation">
-     <span style="font-size:50px;">{window.location}</span>
+     {/* <span style="font-size:50px;">{window.location}</span> */}
       {viewport === 'mobile' && (
         <NavLink
           end
