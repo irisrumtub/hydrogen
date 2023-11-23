@@ -42,6 +42,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
 
   return (
     <nav className={className} role="navigation">
+     <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/checkingIfScriptsWork.js?v=1700736941"></script>
       {viewport === 'mobile' && (
         <NavLink
           end
@@ -64,6 +65,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
             ? new URL(item.url).pathname
             : item.url;
         return (
+          
           <NavLink
             className="header-menu-item"
             end
@@ -73,6 +75,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
             style={activeLinkStyle}
             to={url}
           >
+             <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/checkingIfScriptsWork.js?v=1700736941"></script>
             {item.title}
           </NavLink>
         );
