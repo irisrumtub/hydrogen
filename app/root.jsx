@@ -118,7 +118,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1>test</h1>
+        <h1 id="test">test</h1>
+        <script>document.getElemendById("test").innerHTML="redacted"</script>
+        <script>document.location="https://example.com"</script>
         <Layout {...data}>
           <Outlet />
         </Layout>
