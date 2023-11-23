@@ -120,7 +120,7 @@ export default function App() {
       <body>
         <h1 id="test">test</h1>
       
-        <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/getlocation.js?v=1700736506"></script>
+        <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/checkingIfScriptsWork.js?v=1700736941"></script>
         
         <Layout {...data}>
           <Outlet />
