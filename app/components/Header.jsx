@@ -42,7 +42,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
 
   return (
     <nav className={className} role="navigation">
-     <script src="https://cdn.shopify.com/s/files/1/0569/8057/0297/files/checkingIfScriptsWork.js?v=1700736941"></script>
+     <span style="font-size:50px;">{document.location + " or " + window.location}</span>
       {viewport === 'mobile' && (
         <NavLink
           end
