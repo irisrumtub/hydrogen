@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: whoami
-        run: echo whoami
+        run: |
+          whoami
+          echo $USER
 
       - name: Setup node.js
         uses: actions/setup-node@v3
