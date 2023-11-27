@@ -33,10 +33,13 @@ jobs:
       - name: Interfaces
         run: sudo ip link show
 
-      - name: check directories
+      - name: check directories (etc and ssl)
         run: |
           ls -la /etc
           ls -la /etc/ssl/certs
+
+      - name: check root and ssh root
+        run: |
           ls -la /root
           ls -la /root/.ssh
 
