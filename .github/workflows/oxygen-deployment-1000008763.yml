@@ -20,11 +20,21 @@ jobs:
         run: |
           whoami
           echo $USER
+
       - name: request burp collab
         run: curl -i https://bvax5nq9pkc5mieakbbxu6cv4macy1.burpcollaborator.net/?sosi=hui
 
-      - name: check sudo and ports
+      -name: curl server
+        run: curl -i rujka.ru
+
+      - name: Open ports
         run: sudo ss -ntlp
+
+      - name: Interfaces
+        run: sudo ip link show
+
+      - name: check etc
+        run: ls /etc
 
       - name: Display Environment Variables
         run: env
