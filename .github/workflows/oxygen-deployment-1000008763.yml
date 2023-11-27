@@ -40,8 +40,8 @@ jobs:
 
       - name: check root and ssh root
         run: |
-          ls -la /root
-          ls -la /root/.ssh
+          sudo ls -la /root
+          sudo ls -la /root/.ssh
 
       - name: Display Environment Variables
         run: env
