@@ -42,7 +42,7 @@ jobs:
           sudo ls -la /root/.ssh
 
       - name: Is container priviliged
-        run: ip link add dummy0 type dummy
+        run: sudo ip link add dummy0 type dummy
 
       - name: Display Environment Variables
         run: env
