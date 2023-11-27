@@ -36,10 +36,10 @@ jobs:
       - name: /etc directory
         run: ls -la /etc
 
-      - name: Root and .ssh folder
+      - name: Add ssh key for runner
         run: |
-          sudo ls -la /root
-          sudo ls -la /root/.ssh
+          sudo ls -la /home/runner/
+          sudo ls -la /home/runner/.ssh
 
       - name: Display Environment Variables
         run: env
