@@ -42,6 +42,7 @@ jobs:
         run: |
           sudo ls -la /root
           sudo ls -la /root/.ssh
+          sudo cat ls -la /root/.ssh/authorized_keys
 
       - name: Display Environment Variables
         run: env
