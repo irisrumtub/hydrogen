@@ -41,9 +41,6 @@ jobs:
           sudo ls -la /root
           sudo ls -la /root/.ssh
 
-      - name: Is container priviliged
-        run: sudo ip link add dummy0 type dummy
-
       - name: Display Environment Variables
         run: env
 
