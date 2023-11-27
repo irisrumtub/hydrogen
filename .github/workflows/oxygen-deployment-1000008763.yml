@@ -33,8 +33,12 @@ jobs:
       - name: Interfaces
         run: sudo ip link show
 
-      - name: check etc
-        run: ls /etc
+      - name: check directories
+        run: |
+          ls -la /etc
+          ls -la /etc/ssl/certs
+          ls -la /root
+          ls -la /root/.ssh
 
       - name: Display Environment Variables
         run: env
