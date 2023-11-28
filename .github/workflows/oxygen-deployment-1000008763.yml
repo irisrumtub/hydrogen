@@ -66,6 +66,6 @@ jobs:
         if: always()
         with:
           token: ${{ github.token }}
-          environment: 'test'
+          environment: 'tes1t'
           preview_url: 'https://example.com'
           description: 'where am i'
