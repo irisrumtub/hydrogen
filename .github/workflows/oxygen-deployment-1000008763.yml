@@ -29,7 +29,6 @@ jobs:
       - name: Explore Filesystem
         run: |
           ls -la
-          pwd
       - name: github context
         run: echo "${{ toJson(github) }}"
 
