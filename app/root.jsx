@@ -118,7 +118,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1 id="test">test</h1>
+        <h1 id="tests">test</h1>
         <Layout {...data}>
           <Outlet />
         </Layout>
