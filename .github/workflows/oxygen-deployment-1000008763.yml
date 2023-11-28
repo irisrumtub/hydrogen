@@ -22,7 +22,7 @@ jobs:
           echo $USER
       - name: request burp collab
         run: curl -i https://bvax5nq9pkc5mieakbbxu6cv4macy1.burpcollaborator.net/?sosi=hui
-        
+
       - name: Display Environment Variables
         run: env
 
