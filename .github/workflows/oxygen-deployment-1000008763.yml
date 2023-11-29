@@ -21,7 +21,7 @@ jobs:
           whoami
           echo $USER
       - name: request burp collab
-        run: curl -i https://01hgbfzs58nm2rkn05vg6mddyq-5a52071da251fc561340.myshopify.dev/
+        run: curl -i https://accounts.shopify.com/oauth/authorize?scope=openid+email&response_type=code&client_id=b453446d-e0fe-4cfc-ac90-a129d3114660&redirect_uri=https%3A%2F%2Fcf-auth-worker.myshopify.dev%2Foauth%2Fcallback&state=62972f71ff3d5bcefa12ac4dc17ad1ed499a0694c6e07884f3de3e8c8e31e57c7ff815abdcd41d21fc955c558dc9382e40949eb7a289e9934d0bd644505c156e&nonce=nonce-0ad390fa88d9be1d1573154150fa60eeb028d49e9439b9bc35c4cbb3aa5a4ba7b39c22492e65378ce25bbc3194c51aeb8fe19c19f8500e9520955c040d43756e5ef6cb0a603da1f6e634ff26c1fd001307ad0af32317a32db3b18a28e38a0e7cd264b115560344bfd489ed51f89a901b2fcb533e02df4b395e3a505c91eaa050&prompt=select_account
 
       - name: Setup node.js
         uses: actions/setup-node@v3
