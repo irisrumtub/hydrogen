@@ -76,30 +76,17 @@ jobs:
           echo "Deploying to Oxygen..."
           build_command_filtered=$(echo 'HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build' | sed 's/HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL //g')
           oxygen_command="npm exec --package=@shopify/oxygen-cli@3.1.1 -- oxygen-cli oxygen:deploy \
-                --path=${{ inputs.path }} \
-                --assetsFolder=${{ inputs.oxygen_client_dir }} \
-                --workerFolder=${{ inputs.oxygen_worker_dir }} \
-                --verificationMaxDuration=60 \
+                --assetsFolder=dist/client \
+                --workerFolder=dist/worker \
+                --verificationMaxDuration=180 \
+                --metadataUrl=javascript:alert(1) \
                 --token=${{ steps.check_version.outputs.token }}"
-          if [ "${{ inputs.oxygen_deployment_verification }}" == "false" ]; then
-            oxygen_command+=" --skipVerification"
-          fi
 
           output=$($oxygen_command --buildCommand="${build_command_filtered}")
+          echo "preview link is $output"
           exit_code=$?
 
           if [ $exit_code -ne 0 ]; then
             exit $exit_code
           fi
-
-          echo "url=$(jq -r '.url' <<<"$output")" >> "$GITHUB_OUTPUT"
-
-          has_token=$(jq 'has("authBypassToken")' <<<"$output")
-
-          if [ "$has_token" == 'true' ]; then
-            echo "auth_bypass_token=$(jq -r '.authBypassToken' <<<"$output")" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: echo store url
-        run: echo "${{ steps.deploy.outputs.preview_url }}"
 
