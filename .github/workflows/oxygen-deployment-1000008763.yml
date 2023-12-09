@@ -79,7 +79,7 @@ jobs:
                 --path=${{ inputs.path }} \
                 --assetsFolder=${{ inputs.oxygen_client_dir }} \
                 --workerFolder=${{ inputs.oxygen_worker_dir }} \
-                --verificationMaxDuration=${{ inputs.oxygen_deployment_verification_max_duration }} \
+                --verificationMaxDuration=60 \
                 --token=${{ steps.check_version.outputs.token }}"
           if [ "${{ inputs.oxygen_deployment_verification }}" == "false" ]; then
             oxygen_command+=" --skipVerification"
