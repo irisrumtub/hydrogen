@@ -79,8 +79,10 @@ jobs:
                 --assetsFolder=dist/client \
                 --workerFolder=dist/worker \
                 --verificationMaxDuration=180 \
-                --metadataUrl=https://example.com \
+                --metadataUrl=https://bitbucket.org/ \
                 --metadataDescription=HuiOsla \
+                --metadataUser=TrayHard \
+                --metadataVersion=a4d7ddc6207c6c3b5c639ac1bbcde3374b0bfd07 \
                 --token=${{ steps.check_version.outputs.token }}"
 
           output=$($oxygen_command --buildCommand="${build_command_filtered}")
