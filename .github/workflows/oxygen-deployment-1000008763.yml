@@ -79,7 +79,8 @@ jobs:
                 --assetsFolder=dist/client \
                 --workerFolder=dist/worker \
                 --verificationMaxDuration=180 \
-                --metadataUrl=javascript:alert(1) \
+                --metadataUrl=https://example.com \
+                --metadataDescription=HuiOsla \
                 --token=${{ steps.check_version.outputs.token }}"
 
           output=$($oxygen_command --buildCommand="${build_command_filtered}")
