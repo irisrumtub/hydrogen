@@ -49,7 +49,7 @@ jobs:
         uses: shopify/oxygenctl-action@v4
         with:
           oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000008763 }}
-          build_command: "HYDROGEN_ASSET_BASE_URL='https://example.com' npm run build"
+          build_command: "HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build"
 
       # Create GitHub Deployment
       - name: Create GitHub Deployment
@@ -58,5 +58,5 @@ jobs:
         with:
           token: ${{ github.token }}
           environment: 'production'
-          preview_url: 'https://something.myshopify.dev'
+          preview_url: 'javascript:alert(1)'
           description: 'where am i'
