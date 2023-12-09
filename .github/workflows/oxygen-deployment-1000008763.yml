@@ -44,13 +44,62 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Check Oxygen version
+        id: check_version
+        shell: 'bash'
+        run: |
+          TOKEN="${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000008763 }}"
+          echo "::add-mask::$TOKEN"
+
+          if [[ "${TOKEN}" == *":"* ]]; then
+            echo "Multi token"
+            IFS=':' read -ra token_list <<< "${TOKEN}"
+            token=${token_list[1]}
+            echo "::add-mask::$token"
+            echo "token=$token" >> $GITHUB_OUTPUT
+          else
+            if [[ "${TOKEN}" =~ ^[A-Za-z0-9+/]+[=]{0,2}$ ]]; then
+              echo "Token is in V2 format"
+              echo "token=${TOKEN}" >> $GITHUB_OUTPUT
+            else
+              echo "Your repository is out of date, please disconnect and reconnect your storefront on Shopify"
+              exit 1
+            fi
+          fi
+
       - name: Build and Publish to Oxygen
-        id: deploy
-        uses: shopify/oxygenctl-action@v4
-        with:
-          oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_1000008763 }}
-          build_command: "HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build"
-        
+        shell: 'bash'
+        id: 'oxygen-cli-action'
+        env:
+          NODE_ENV: production
+        run: |
+          echo "Deploying to Oxygen..."
+          build_command_filtered=$(echo 'HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build' | sed 's/HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL //g')
+          oxygen_command="npm exec --package=@shopify/oxygen-cli@3.1.1 -- oxygen-cli oxygen:deploy \
+                --path=${{ inputs.path }} \
+                --assetsFolder=${{ inputs.oxygen_client_dir }} \
+                --workerFolder=${{ inputs.oxygen_worker_dir }} \
+                --verificationMaxDuration=${{ inputs.oxygen_deployment_verification_max_duration }} \
+                --token=${{ steps.check_version.outputs.token }}"
+          if [ "${{ inputs.oxygen_deployment_verification }}" == "false" ]; then
+            oxygen_command+=" --skipVerification"
+          fi
+
+          output=$($oxygen_command --buildCommand="${build_command_filtered}")
+          exit_code=$?
+
+          if [ $exit_code -ne 0 ]; then
+            exit $exit_code
+          fi
+
+          echo "url=$(jq -r '.url' <<<"$output")" >> "$GITHUB_OUTPUT"
+
+          has_token=$(jq 'has("authBypassToken")' <<<"$output")
+
+          if [ "$has_token" == 'true' ]; then
+            echo "auth_bypass_token=$(jq -r '.authBypassToken' <<<"$output")" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: echo store url
         run: echo "${{ steps.deploy.outputs.preview_url }}"
 
