@@ -82,7 +82,7 @@ jobs:
           NODE_ENV: production
         run: |
           echo "Deploying to Oxygen..."
-          build_command_filtered=$(echo 'HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL npm run build' | sed 's/HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL //g')
+          build_command_filtered=$(echo 'HYDROGEN_ASSET_BASE_URL=$https://example.com npm run build' | sed 's/HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL //g')
           oxygen_command="npm exec --package=@shopify/oxygen-cli@3.1.1 -- oxygen-cli oxygen:deploy \
                 --assetsFolder=dist/client \
                 --workerFolder=dist/worker \
